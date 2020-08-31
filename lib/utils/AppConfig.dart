@@ -12,7 +12,7 @@ class AppConfig{
 
   AppConfig._internal();
 
-  static String host ="http://34.84.197.89/api/";
+  static String host ="http://35.200.7.216/api/";
   static ThemeData defaultTheme = new ThemeData(
       brightness: Brightness.light,
 
@@ -40,7 +40,14 @@ class AppConfig{
       decoration: TextDecoration,
     );
   }
+  static Widget lineView(){
+    return new Divider(
+      height: 1.0,
+      color: Colors.black12,
+//      color: Colors.white,
 
+    );
+  }
   static TextStyle normalTextStyle(Color color, double size) {
     return new TextStyle(
       color: color,
