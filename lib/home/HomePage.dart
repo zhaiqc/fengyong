@@ -283,6 +283,7 @@ class _HomePageState extends State<HomePage> implements HomeView {
                                           itemCount:data.manystoretapsText.length ,
                                           scrollDirection: Axis.horizontal,
                                           itemBuilder: (contex,index){
+
                                             return Container(
 
                                               alignment: Alignment.center,
