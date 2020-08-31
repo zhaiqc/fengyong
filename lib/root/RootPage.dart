@@ -8,6 +8,7 @@ import 'package:flutter_app_shop/utils/AppConfig.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 
 class RootPage extends StatefulWidget {
+
   @override
   _RootPageState createState() => _RootPageState();
 }
@@ -15,8 +16,8 @@ class RootPage extends StatefulWidget {
 class _RootPageState extends State<RootPage> with TickerProviderStateMixin {
   List<Widget> _bottomNavPages = List(); // 底部导航栏各个可切换页面组
   int _selectedIndex = 0;
-  double width = AppConfig.logic_width(100);
-  double icon = AppConfig.logic_width(100);
+  double width = AppConfig.logic_width(120);
+  double icon = AppConfig.logic_width(120);
   double e = AppConfig.logic_width(0);
   bool showBtn=false;
   int animatedTime =300;
@@ -26,23 +27,26 @@ class _RootPageState extends State<RootPage> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    _bottomNavPages..add(HomePage())..add(MyPage(animatedCallBack));
+
+    _bottomNavPages..add(HomePage(animatedCallBack,reAnimatedCallBack))..add(MyPage(animatedCallBack));
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context,width: 750, height: 1334);
+
     return Scaffold(
       body:_bottomNavPages[_selectedIndex],
         bottomNavigationBar:BottomAppBar(),
     floatingActionButton:InkWell(child: AnimatedContainer(
       duration: Duration(milliseconds: animatedTime),	// 设置时间
-      child: Row(children: [
+      child:Container(child:  Row(children: [
         showBtn?  Expanded(child:    AnimatedContainer(
           duration: Duration(milliseconds: animatedTime),	// 设置时间
           width:e ,
           height:e,
           child:SizedBox(child:buildBottomItem(_selectedIndex, 0, Icons.home, "首页"),),
-        ),):Container(),
+        ),):Expanded(child:Container() ,),
         AnimatedContainer(
           duration: Duration(milliseconds: animatedTime),	// 设置时间
           width:icon ,height:icon,
@@ -56,13 +60,13 @@ class _RootPageState extends State<RootPage> with TickerProviderStateMixin {
           duration: Duration(milliseconds: animatedTime),	// 设置时间
           width:e ,height:e,
           child:SizedBox(child: buildBottomItem(_selectedIndex, 1, Icons.markunread, "我的"),),
-        ),):Container(),
-      ],),
+        ),):Expanded(child:Container() ,),
+      ],),),
       decoration: new BoxDecoration(
         color: Colors.white,
         borderRadius: new BorderRadius.circular((50.0)), // 圆角度
       ),
-      height:AppConfig.logic_width(100),
+      height:AppConfig.logic_width(120),
       width: width ,
     ),onTap: (){
       if(showBtn){
@@ -82,26 +86,29 @@ class _RootPageState extends State<RootPage> with TickerProviderStateMixin {
       _selectedIndex = index;
     });
   }
-  void animatedCallBack(){
+   animatedCallBack(){
 setState(() {
   width =AppConfig.logic_width(500);
   icon =AppConfig.logic_width(80);
   e=AppConfig.logic_width(100);
-  showBtn=true;
 
-});}
-  void reAnimatedCallBack(){
+});
+  Timer(Duration(microseconds: 1000),(){
     setState(() {
-      width =AppConfig.logic_width(100);
-      icon =AppConfig.logic_width(100);
-      e=0;
-    });
-    new Timer(Duration(milliseconds: animatedTime), (){
-      setState(() {
-        showBtn=false;
+      showBtn=true;
 
-      });
     });
+  });
+  }
+   reAnimatedCallBack(){
+    setState(() {
+      width =AppConfig.logic_width(120);
+      icon =AppConfig.logic_width(120);
+      e=0;
+      showBtn=false;
+
+    });
+
 
 
   }
@@ -110,14 +117,14 @@ setState(() {
 
   buildBottomItem(int selectIndex, int index, IconData iconData, String title) {
     //未选中状态的样式
-    TextStyle textStyle = TextStyle(fontSize: 12.0,color: Colors.grey);
+    TextStyle textStyle = TextStyle(fontSize:12.0,color: Colors.grey);
     Color iconColor = Colors.grey;
     double iconSize=15;
     EdgeInsetsGeometry padding =  EdgeInsets.only(top: 8.0);
 
     if(selectIndex==index){
       //选中状态的文字样式
-      textStyle = TextStyle(fontSize: 13.0,color: Colors.black);
+      textStyle = TextStyle(fontSize:  13.0,color: Colors.black);
       //选中状态的按钮样式
       iconSize=20;
       padding =  EdgeInsets.only(top: 6.0);
@@ -128,33 +135,35 @@ setState(() {
       padItem = Padding(
         padding: padding,
         child: Container(
-
           decoration: new BoxDecoration(
             color: Colors.white,
             borderRadius: new BorderRadius.circular((50.0)), // 圆角度
           ),
            //底部工具栏的颜色。
           child: Center(
-            child: Container(
+            child:
+            showBtn?Container(
+              height: AppConfig.logic_width(80),
+//              width: AppConfig.logic_width(80),
               child: Column(
                 children: <Widget>[
-                Icon(
+                Expanded(child:   Icon(
                   iconData,
                   color:iconColor,
                   size: iconSize,
-                ),
-                Text(
+                ),),
+                Expanded(child:    Text(
                   title,
                   style: textStyle,
-                )
-              ],
-            ),)
+                ))
+                ],
+            ),):
+            Container()
           ),
         ),
       );
     }
     Widget item = Container(
-//      flex: 1,
       child: new GestureDetector(
         onTap: () {
           if (index != _selectedIndex) {

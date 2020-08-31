@@ -31,7 +31,7 @@ class _LaunchPageState extends State<LaunchPage> implements LaunchView {
       child: Stack(
         children: [
           new Image.asset(
-            "asset/launch.gif",
+            "asset/launch.png",
             fit: BoxFit.fill,
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,

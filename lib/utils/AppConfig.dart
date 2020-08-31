@@ -87,7 +87,7 @@ class AppConfig{
             width: AppConfig.logic_width(150),
             child:InkWell(onTap:(){
               },child:Row(children: [
-              Expanded(child:Text("淄博",style: AppConfig.normalTextStyle(Colors.grey, AppConfig.font_midSize)),flex: 6,),
+              Expanded(child:Text("淄博",style: AppConfig.normalTextStyle(Colors.grey, AppConfig.font_smallSize)),flex: 6,),
               Expanded(child: Icon(Icons.arrow_drop_down,color: Colors.grey,),flex: 4,)
             ],) ,)
         ),
