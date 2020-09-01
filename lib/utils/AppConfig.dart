@@ -41,10 +41,9 @@ class AppConfig{
     );
   }
   static Widget lineView(){
-    return new Divider(
-      height: 1.0,
-      color: Colors.black12,
-//      color: Colors.white,
+    return new Container(
+      height: AppConfig.logic_width(5.0),
+      color: Color(0xFFfefefe)
 
     );
   }
@@ -52,6 +51,7 @@ class AppConfig{
     return new TextStyle(
       color: color,
       fontSize: size,
+      height: 1
     );
   }
   static double logic_fontSize(double size) {
@@ -83,7 +83,7 @@ class AppConfig{
         },
         child: new Container(
             alignment: Alignment.center,
-            margin: EdgeInsets.only(left: AppConfig.logic_width(20)),
+            margin: EdgeInsets.only(left: AppConfig.logic_width(15)),
             width: AppConfig.logic_width(150),
             child:InkWell(onTap:(){
               },child:Row(children: [

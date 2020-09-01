@@ -26,16 +26,15 @@ class _LaunchPageState extends State<LaunchPage> implements LaunchView {
   Widget build(BuildContext context) {
     ScreenUtil.init(context,width: 750, height: 1334);
     return Scaffold(body: Container(
-      width: AppConfig.logic_width(750),
-      height: AppConfig.logic_width(1334),
+//      width: AppConfig.logic_width(750),
+//      height: AppConfig.logic_width(1334),
       child: Stack(
         children: [
           new Image.asset(
             "asset/launch.png",
             fit: BoxFit.fill,
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-
+            width:AppConfig.logic_width(750),
+            height:AppConfig.logic_height(1334),
           ),
           new Container(
             alignment: Alignment.topRight,
@@ -52,8 +51,11 @@ class _LaunchPageState extends State<LaunchPage> implements LaunchView {
 
                 onTap: (){
                   j=false;
-                  AppConfig.navigator(context: context,page:RootPage() );
 
+                  Navigator.pushReplacement(
+                    context,
+                    new MaterialPageRoute(builder: (context)=> RootPage()),
+                  );
                 },
                 child: new AnimatedOpacity(
                   opacity: 1.0,
@@ -70,7 +72,7 @@ class _LaunchPageState extends State<LaunchPage> implements LaunchView {
                         width: 100.0,
                         height: 35.0,
                         alignment: Alignment.center,
-                        child: new Text("$time | 跳过",style: AppConfig.normalTextStyle(AppConfig.fontDarkColor, AppConfig.font_bigSize)),
+                        child: new Text("$time | 跳过",style: AppConfig.normalTextStyle(Colors.white, AppConfig.font_bigSize)),
 
                       ),
                     ),
@@ -99,8 +101,11 @@ class _LaunchPageState extends State<LaunchPage> implements LaunchView {
           time ="0";
         });
         if(j){
-          AppConfig.navigator(context: context,page:RootPage() );
 
+          Navigator.pushReplacement(
+            context,
+            new MaterialPageRoute(builder: (context)=> RootPage()),
+          );
         }
       }
     });
