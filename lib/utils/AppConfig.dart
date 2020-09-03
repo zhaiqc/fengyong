@@ -12,7 +12,7 @@ class AppConfig{
 
   AppConfig._internal();
 
-  static String host ="http://35.200.7.216/api/";
+  static String host ="http://www.zhaiqichaozeijiershuai.top/api/";
   static ThemeData defaultTheme = new ThemeData(
       brightness: Brightness.light,
 

@@ -54,11 +54,11 @@ class _AlertViewState extends State<AlertView> {
           },),)),
 
           new Container(
-            width: AppConfig.logic_width(700.0),
+            width: AppConfig.logic_width(600.0),
             child: new Column(
               children: <Widget>[
                 new Container(
-                  margin: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                  margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                   height: AppConfig.logic_width(150),
                   child:  Row(
                     children: [
@@ -72,7 +72,7 @@ class _AlertViewState extends State<AlertView> {
                       Expanded(
                           flex: 3,
                           child: Container(
-                            margin:EdgeInsets.only(left: AppConfig.logic_width(10),top:  AppConfig.logic_width(10)),
+                            margin:EdgeInsets.only(left: AppConfig.logic_width(30),top:  AppConfig.logic_width(10)),
 
                             child: Column(
                               children: [
@@ -80,11 +80,12 @@ class _AlertViewState extends State<AlertView> {
                                   child: Container(
                                     child: Text(
                                       widget.entity.data.title,
+                                      maxLines: 2,
                                       style: TextStyle(
                                           height: 1,
-                                          color: Colors.black,
+                                          color: Colors.orangeAccent,
                                           fontSize:
-                                          AppConfig.logic_fontSize(25),decoration: TextDecoration.none),
+                                          AppConfig.logic_fontSize(25),decoration: TextDecoration.none,),
                                     ),
                                     width: double.infinity,
                                   ),
@@ -95,8 +96,9 @@ class _AlertViewState extends State<AlertView> {
                                     child: Text(
                                       "${widget.entity.data.priceTitle}",
                                       style: TextStyle(
+                                        color: Colors.black,
                                           fontSize:
-                                          AppConfig.logic_fontSize(25),decoration: TextDecoration.none),
+                                          AppConfig.logic_fontSize(30),decoration: TextDecoration.none,fontWeight: FontWeight.bold),
                                     ),
                                     width: double.infinity,
                                   ),
@@ -115,6 +117,7 @@ class _AlertViewState extends State<AlertView> {
 
                 Material(
                     child: new Container(
+                      color: Colors.white,
                       height: AppConfig.logic_width(700.0),
                       alignment: Alignment.centerLeft,
                       child: new CustomScrollView(
@@ -144,12 +147,12 @@ class _AlertViewState extends State<AlertView> {
 
                 AppConfig.lineView(),
                 new Container(
-                  height: AppConfig.logic_width(50.0),
+                  height: AppConfig.logic_width(70.0),
                   margin: const EdgeInsets.all(10.0),
                   width: AppConfig.logic_width(400.0),
                   alignment: Alignment.center,
                   child: new Material(
-                    color: AppConfig.otherColor,
+                    color: Colors.red,
                     borderRadius:
                     new BorderRadius.all(const Radius.circular(10.0)),
                     child: new InkWell(
@@ -201,10 +204,7 @@ class _AlertViewState extends State<AlertView> {
           child: Text(
             "${widget.entity.data.setmeal[index].name}",
             style: TextStyle(
-                fontSize: AppConfig.logic_width(
-                  30,
-                ),
-                color: AppConfig.mainColor),
+                fontSize: AppConfig.logic_width(30,), color: Colors.orangeAccent,fontWeight:FontWeight.bold ),
           ),
         ),
         Container(
@@ -237,7 +237,7 @@ class _AlertViewState extends State<AlertView> {
                               fontSize: AppConfig.logic_width(
                                 25,
                               ),
-                              color: Colors.red),
+                             ),
                         ) ,)
 
                     ],)

@@ -23,7 +23,7 @@ class _MyPageState extends State<MyPage> {
     return CustomScrollView(
           slivers: [
             SliverAppBar(
-              backgroundColor: AppConfig.mainColor,
+              backgroundColor:Colors.white,
               pinned: false,
               expandedHeight: AppConfig.logic_height(500),
                   flexibleSpace:Container(
@@ -47,14 +47,48 @@ class _MyPageState extends State<MyPage> {
                          decoration:BoxDecoration(borderRadius:BorderRadius.only(topLeft: Radius.circular(15.0),topRight: Radius.circular(15.0)),color: Colors.white),
                        margin: EdgeInsets.only(top: AppConfig.logic_height(300),),
                        child: Column(
-                         mainAxisAlignment: MainAxisAlignment.center,
                          children: [
-                         Expanded(child:  Container(color: Colors.red,)),
-                         Expanded(child:  Container(color: Colors.yellow,child: Column(children: [
-                           Expanded(child: Container(color: Colors.grey,child: Text("马蜂窝用户",),width: double.infinity,)),
-                           Expanded(child: Container())
+                       Container(height:AppConfig.logic_height(70),),
+                         Expanded(child:  Container(child: Column(children: [
+                           Expanded(child: Container(
+                             margin:EdgeInsets.only(left: AppConfig.logic_width(30)) , child: Text("蜂蛹用户",style: TextStyle(fontWeight: FontWeight.bold,fontSize: AppConfig.logic_fontSize(30)),),width: double.infinity,)),
+                           Expanded(child: Container(child: Row(children: [
+                             Expanded(child: Container(
+                               margin: EdgeInsets.only(left: AppConfig.logic_width(20)),
+
+                               child: Row(
+                               children: [
+                               Expanded(child: Container(child: Text.rich(TextSpan(text: "7",
+                                   style: TextStyle(fontSize: AppConfig.logic_fontSize(25), color: Colors.black,fontWeight: FontWeight.bold),
+                                   children:[       TextSpan(
+                                   text: '关注',
+
+                                     style: TextStyle(fontSize: AppConfig.logic_fontSize(15), color: Colors.black,fontWeight: FontWeight.normal),
+
+                                   )
+
+
+                               ] )),)),
+                                 Expanded(child: Container(child: Text.rich(TextSpan(text: "7",
+                                     style: TextStyle(fontSize: AppConfig.logic_fontSize(25), color: Colors.black,fontWeight: FontWeight.bold),
+                                     children:[       TextSpan(
+                                       text: '粉丝',
+
+                                       style: TextStyle(fontSize: AppConfig.logic_fontSize(15), color: Colors.black,fontWeight: FontWeight.normal),
+
+                                     )
+
+
+                                     ] )),)),//                               Expanded(child: Container(child: Text("7关注"),)),
+                             ],),)),
+                             Expanded(child: Container(),flex: 2,)
+                           ],),),)
                          ],),),flex: 2,),
-//                         Expanded(child:  Container(color: Colors.red,)),
+                         Expanded(child:  Container(
+
+                           alignment:Alignment.centerLeft ,
+                           margin: EdgeInsets.only(left: AppConfig.logic_width(20)),
+                           child: Text("介绍自己更容易获得关注哦",style: TextStyle(color: Colors.grey,fontSize: AppConfig.font_smallSize,height: 1),),)),
 
                        ],),
                        height: AppConfig.logic_height(300),),
@@ -108,7 +142,104 @@ class _MyPageState extends State<MyPage> {
 //                  ),),
             ),
 
+
+            new SliverList(
+              delegate: new SliverChildListDelegate([
+                new Container(
+                  child: dingdan(),
+                ),
+              ]),
+            ),
           ],
     );
   }
+
+  Widget dingdan(){
+    return Container(
+      alignment: Alignment.center,
+      height: AppConfig.logic_height(260),child:Card(child: Column(
+      mainAxisAlignment:MainAxisAlignment.center ,
+      children: [
+        new Row(
+          children: <Widget>[
+
+            new Container(
+              padding: const EdgeInsets.only(left: 10.0,top: 10.0),
+              alignment: Alignment.centerLeft,
+              child: new Text(
+                "我的订单",
+                style: AppConfig.normalTextStyle(
+                    AppConfig.fontDarkColor, AppConfig.font_midSize),
+              ),
+            ),
+            new Expanded(child: new Container()),
+            new Container(
+              padding: const EdgeInsets.only(top: 10.0,right: 10.0),
+
+              child: new GestureDetector(
+                onTap: () {
+                  ///分类点击事件
+                },
+                child: new Row(
+                  children: <Widget>[
+                    new Icon(
+                      Icons.chevron_right,
+                      size: AppConfig.font_bigSize,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+        Padding(padding: EdgeInsets.only(top: AppConfig.logic_height(10)),child: Divider(
+          height: 0.2,
+          color: Colors.black12,
+
+        ),),
+        Container(
+          alignment: Alignment.center,
+          padding: const EdgeInsets.only( top: 15),
+          height: AppConfig.logic_height(150),
+          child: Row(children: [
+            Expanded(child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+
+                children: [
+                  Icon(Icons.assignment,color: Colors.black54),
+                  Text("我的订单",style: TextStyle(fontSize: AppConfig.logic_fontSize(25),color: Colors.black54),),
+                ],),)),
+            Expanded(child: Container(child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+
+              children: [
+                Icon(Icons.query_builder,color: Colors.black54),
+                Container(
+                  alignment: Alignment.center,
+                  child: Text("待使用",style: TextStyle(fontSize: AppConfig.logic_fontSize(25),color: Colors.black54,),textAlign: TextAlign.center,),),
+
+              ],),)),
+            Expanded(child: Container(child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+
+              children: [
+                Icon(Icons.question_answer ,color: Colors.black54),
+                Text("待评价",style: TextStyle(fontSize: AppConfig.logic_fontSize(25),color: Colors.black54),),
+
+              ],),)),
+            Expanded(child: Container(
+
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.account_balance_wallet,color: Colors.black54),
+                  Text("退款/售后",style: TextStyle(color: Colors.black54,fontSize: AppConfig.logic_fontSize(25)),),
+
+                ],),)),
+
+          ],),)
+      ],) ,),);
+  }
+
 }

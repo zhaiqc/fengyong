@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app_shop/detail/DetailPage.dart';
 import 'package:flutter_app_shop/home/model/home_entity.dart';
 import 'package:flutter_app_shop/home/model/shop_entity.dart';
 import 'package:flutter_app_shop/home/shop/ShopList.dart';
@@ -658,8 +659,8 @@ class _HomePageState extends State<HomePage> implements HomeView {
       builder: (BuildContext context) => new AlertView(
         entity: entity,
         onTap: () {
-//          Navigator.push(context,
-//              new MaterialPageRoute(builder: (_) => new DetailPage(entity)));
+          Navigator.push(context,
+              new MaterialPageRoute(builder: (_) => new DetailPage(entity)));
         },
       ),
     );    // TODO: implement getShopSuccess
