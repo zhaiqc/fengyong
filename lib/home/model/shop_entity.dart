@@ -39,6 +39,7 @@ class ShopData with JsonConvert<ShopData> {
 	String content;
 	String rightsandinterestscontent;
 	String mianzecontent;
+	String introduction;
 	List<ShopDataSetmeal> setmeal;
 	List<ShopDataManystoretap> manystoretaps;
 	ShopDataManystore manystore;
@@ -73,6 +74,7 @@ class ShopDataManystore with JsonConvert<ShopDataManystore> {
 	String image;
 	String tel;
 	String address;
+	String content;
 	@JSONField(name: "status_text")
 	String statusText;
 	@JSONField(name: "create_time_text")

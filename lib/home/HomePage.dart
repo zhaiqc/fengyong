@@ -11,7 +11,6 @@ import 'package:flutter_app_shop/utils/AlertView.dart';
 import 'package:flutter_app_shop/utils/AppConfig.dart';
 import 'package:flutter_app_shop/utils/widgets/LoadingDialog.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 
 import '../utils/AppConfig.dart';
 
@@ -564,6 +563,30 @@ class _HomePageState extends State<HomePage> implements HomeView {
                                               decoration:
                                                   TextDecoration.lineThrough),
                                         ),
+//                                        data.spellStatus=="1"?  Container(
+//                                          margin: EdgeInsets.only(left: AppConfig.logic_width(10)),
+//                                          height: AppConfig.logic_height(30),
+//                                          width: AppConfig.logic_width(100),
+//                                          padding: EdgeInsets.all(AppConfig.logic_width(10)),
+//                                          decoration: new BoxDecoration(
+//                                            color: Colors.white10,
+//                                            borderRadius: BorderRadius.only(
+//                                                topLeft:  Radius.circular(8.0),
+//                                                topRight:  Radius.circular(8.0),
+//                                                bottomRight:  Radius.circular(8.0)
+//                                            ),
+//                                            border: new Border.all(
+//                                                width: AppConfig.logic_width(0),
+//                                                color: Colors.red
+//                                            ),
+//                                          ),
+//                                          child:Text("${data.spellNum}人团",style: TextStyle(color: Colors.red,fontSize: AppConfig.logic_fontSize(16),height: 1),textAlign: TextAlign.center,) ,
+////                      "￥${widget.entity.data.originalPrice}",
+////                      style: TextStyle(
+////                          fontSize: AppConfig.logic_width(25),
+////                          color: Colors.grey,
+////                          decoration: TextDecoration.lineThrough),
+//                                        ):Container(),
                                         Expanded(child: Container()),
                                         Container(
                                           alignment: Alignment.center,

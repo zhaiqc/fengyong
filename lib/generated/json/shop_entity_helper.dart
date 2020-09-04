@@ -94,6 +94,9 @@ shopDataFromJson(ShopData data, Map<String, dynamic> json) {
 	if (json['mianzecontent'] != null) {
 		data.mianzecontent = json['mianzecontent']?.toString();
 	}
+	if (json['introduction'] != null) {
+		data.introduction = json['introduction']?.toString();
+	}
 	if (json['setmeal'] != null) {
 		data.setmeal = new List<ShopDataSetmeal>();
 		(json['setmeal'] as List).forEach((v) {
@@ -142,6 +145,7 @@ Map<String, dynamic> shopDataToJson(ShopData entity) {
 	data['content'] = entity.content;
 	data['rightsandinterestscontent'] = entity.rightsandinterestscontent;
 	data['mianzecontent'] = entity.mianzecontent;
+	data['introduction'] = entity.introduction;
 	if (entity.setmeal != null) {
 		data['setmeal'] =  entity.setmeal.map((v) => v.toJson()).toList();
 	}
@@ -239,6 +243,9 @@ shopDataManystoreFromJson(ShopDataManystore data, Map<String, dynamic> json) {
 	if (json['address'] != null) {
 		data.address = json['address']?.toString();
 	}
+	if (json['content'] != null) {
+		data.content = json['content']?.toString();
+	}
 	if (json['status_text'] != null) {
 		data.statusText = json['status_text']?.toString();
 	}
@@ -259,6 +266,7 @@ Map<String, dynamic> shopDataManystoreToJson(ShopDataManystore entity) {
 	data['image'] = entity.image;
 	data['tel'] = entity.tel;
 	data['address'] = entity.address;
+	data['content'] = entity.content;
 	data['status_text'] = entity.statusText;
 	data['create_time_text'] = entity.createTimeText;
 	data['update_time_text'] = entity.updateTimeText;
