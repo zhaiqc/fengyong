@@ -26,7 +26,7 @@ bool showVideo=false;
   void initState() {
      controller = ChewieController(
       videoPlayerController: VideoPlayerController.network(widget.entity.data.attachfile),
-      autoPlay: true,
+      autoPlay: false,
       autoInitialize: true,
       aspectRatio: 16 / 9,
       looping: false,
@@ -819,6 +819,7 @@ bool showVideo=false;
                         onPressed: (){
                           setState(() {
                             showVideo=true;
+                            controller.play();
                           });
                         },
                         icon: Icon(Icons.play_circle_outline,size: AppConfig.logic_fontSize(80),),),)),

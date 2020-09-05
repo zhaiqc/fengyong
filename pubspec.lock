@@ -146,6 +146,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_2d_amap:
+    dependency: "direct main"
+    description:
+      path: "plugins/flutter_2d_amap"
+      relative: true
+    source: path
+    version: "0.1.0"
   flutter_blurhash:
     dependency: transitive
     description:

@@ -1,11 +1,17 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app_shop/article/AddAritlcePage.dart';
 import 'package:flutter_app_shop/home/HomePage.dart';
+import 'package:flutter_app_shop/login/LoginPage.dart';
+import 'package:flutter_app_shop/login/model/User.dart';
+import 'package:flutter_app_shop/login/model/login_entity.dart';
 import 'package:flutter_app_shop/my/MyPage.dart';
 import 'package:flutter_app_shop/utils/AppConfig.dart';
 import 'package:flutter_screenutil/screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RootPage extends StatefulWidget {
 
@@ -27,6 +33,14 @@ class _RootPageState extends State<RootPage> with TickerProviderStateMixin {
 
   @override
   void initState() {
+
+    SharedPreferences.getInstance().then((prefs) {
+      String use =prefs.getString("user");
+      if(use!=null){
+        new User().entity=LoginEntity().fromJson(jsonDecode(use));
+      }
+
+    });
 
     _bottomNavPages..add(HomePage(animatedCallBack,reAnimatedCallBack))..add(MyPage(animatedCallBack));
     super.initState();
@@ -69,11 +83,20 @@ class _RootPageState extends State<RootPage> with TickerProviderStateMixin {
       height:AppConfig.logic_width(120),
       width: width ,
     ),onTap: (){
-      if(showBtn){
-        reAnimatedCallBack();
-      }else{
-        animatedCallBack();
-      }
+      AppConfig.navigator(context: context,page: AddArticlePage());
+
+//      if(new User().entity==null){
+//        AppConfig.navigator(context: context,page: LoginPage());
+//
+//      }else{
+//        AppConfig.navigator(context: context,page: AddArticlePage());
+//
+//      }
+//      if(showBtn){
+//        reAnimatedCallBack();
+//      }else{
+//        animatedCallBack();
+//      }
 
     },) ,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -81,11 +104,6 @@ class _RootPageState extends State<RootPage> with TickerProviderStateMixin {
 
   }
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
    animatedCallBack(){
 setState(() {
   width =AppConfig.logic_width(500);
@@ -166,11 +184,26 @@ setState(() {
     Widget item = Container(
       child: new GestureDetector(
         onTap: () {
-          if (index != _selectedIndex) {
-            setState(() {
-              _selectedIndex = index;
-            });
+          if(index==1){
+
+            if(new User().entity==null){
+              AppConfig.navigator(context: context,page: LoginPage());
+
+            }else{
+              if (index != _selectedIndex) {
+                setState(() {
+                  _selectedIndex = index;
+                });
+              }
+            }
+          }else{
+            if (index != _selectedIndex) {
+              setState(() {
+                _selectedIndex = index;
+              });
+            }
           }
+
         },
         child: SizedBox(
           height: 52,
