@@ -83,7 +83,7 @@ class _RootPageState extends State<RootPage> with TickerProviderStateMixin {
       height:AppConfig.logic_width(120),
       width: width ,
     ),onTap: (){
-      AppConfig.navigator(context: context,page: AddArticlePage());
+      AppConfig.navigator(context: context,page: AddArticlePage(null));
 
 //      if(new User().entity==null){
 //        AppConfig.navigator(context: context,page: LoginPage());

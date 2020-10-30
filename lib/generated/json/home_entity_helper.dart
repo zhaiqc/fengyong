@@ -47,8 +47,10 @@ homeDataFromJson(HomeData data, Map<String, dynamic> json) {
 		});
 	}
 	if (json['article'] != null) {
-		data.article = new List<dynamic>();
-		data.article.addAll(json['article']);
+		data.article = new List<HomeDataArticle>();
+		(json['article'] as List).forEach((v) {
+			data.article.add(new HomeDataArticle().fromJson(v));
+		});
 	}
 	return data;
 }
@@ -65,7 +67,7 @@ Map<String, dynamic> homeDataToJson(HomeData entity) {
 		data['shopList'] =  entity.shopList.map((v) => v.toJson()).toList();
 	}
 	if (entity.article != null) {
-		data['article'] =  [];
+		data['article'] =  entity.article.map((v) => v.toJson()).toList();
 	}
 	return data;
 }
@@ -239,7 +241,10 @@ homeDataShopListShopListFromJson(HomeDataShopListShopList data, Map<String, dyna
 		data.rightsandinterestscontent = json['rightsandinterestscontent']?.toString();
 	}
 	if (json['mianzecontent'] != null) {
-		data.mianzecontent = json['mianzecontent'];
+		data.mianzecontent = json['mianzecontent']?.toString();
+	}
+	if (json['introduction'] != null) {
+		data.introduction = json['introduction']?.toString();
 	}
 	if (json['manystoretaps_text'] != null) {
 		data.manystoretapsText = new List<HomeDataShopListShopListManystoretapsText>();
@@ -284,6 +289,7 @@ Map<String, dynamic> homeDataShopListShopListToJson(HomeDataShopListShopList ent
 	data['content'] = entity.content;
 	data['rightsandinterestscontent'] = entity.rightsandinterestscontent;
 	data['mianzecontent'] = entity.mianzecontent;
+	data['introduction'] = entity.introduction;
 	if (entity.manystoretapsText != null) {
 		data['manystoretaps_text'] =  entity.manystoretapsText.map((v) => v.toJson()).toList();
 	}
@@ -313,5 +319,58 @@ Map<String, dynamic> homeDataShopListShopListManystoretapsTextToJson(HomeDataSho
 	data['id'] = entity.id;
 	data['manystore_id'] = entity.manystoreId;
 	data['name'] = entity.name;
+	return data;
+}
+
+homeDataArticleFromJson(HomeDataArticle data, Map<String, dynamic> json) {
+	if (json['id'] != null) {
+		data.id = json['id']?.toInt();
+	}
+	if (json['shoplist_id'] != null) {
+		data.shoplistId = json['shoplist_id']?.toInt();
+	}
+	if (json['user_id'] != null) {
+		data.userId = json['user_id']?.toInt();
+	}
+	if (json['title'] != null) {
+		data.title = json['title'];
+	}
+	if (json['likenum'] != null) {
+		data.likenum = json['likenum']?.toInt();
+	}
+	if (json['createtime'] != null) {
+		data.createtime = json['createtime']?.toInt();
+	}
+	if (json['smallimages'] != null) {
+		data.smallimages = json['smallimages']?.toString();
+	}
+	if (json['content'] != null) {
+		data.content = json['content']?.toString();
+	}
+	if (json['nickname'] != null) {
+		data.nickname = json['nickname']?.toString();
+	}
+	if (json['avatar'] != null) {
+		data.avatar = json['avatar']?.toString();
+	}
+	if (json['status_text'] != null) {
+		data.statusText = json['status_text']?.toString();
+	}
+	return data;
+}
+
+Map<String, dynamic> homeDataArticleToJson(HomeDataArticle entity) {
+	final Map<String, dynamic> data = new Map<String, dynamic>();
+	data['id'] = entity.id;
+	data['shoplist_id'] = entity.shoplistId;
+	data['user_id'] = entity.userId;
+	data['title'] = entity.title;
+	data['likenum'] = entity.likenum;
+	data['createtime'] = entity.createtime;
+	data['smallimages'] = entity.smallimages;
+	data['content'] = entity.content;
+	data['nickname'] = entity.nickname;
+	data['avatar'] = entity.avatar;
+	data['status_text'] = entity.statusText;
 	return data;
 }

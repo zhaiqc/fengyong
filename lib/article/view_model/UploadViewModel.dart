@@ -22,6 +22,11 @@ class UploadViewModel{
     LogUtils.d(formData.toString());
     Response  res=await  HttpUtils().sendData(url: "shop/addArticle",data: formData);
     LogUtils.d(res.data);
+    if (res.data["code"]==1){
+        _view.sendSuccess();
+    }else{
+      _view.error(res.data["msg"]);
+    }
 
   }
 }

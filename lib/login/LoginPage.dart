@@ -81,14 +81,8 @@ class _LoginPageState extends State<LoginPage> implements LoginView {
         timerController: timerController,
 
         getVCode: (){
-//          LogUtils.show(filter: "phonenum",msg: phoneCode+_phoneController.text);
           _viewModel.sendCode(phoneNum:_phoneController.text );
-////                    timerController.startTimer();
-//          showDialog(context:context,builder: (context){
-//            con =context;
-//            return new LoadingDialog("请稍后...");
-//          });
-        },
+          },
       ),
     );
   }
@@ -108,8 +102,6 @@ class _LoginPageState extends State<LoginPage> implements LoginView {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
-
-//            height: 48.0,
             width: double.infinity,
             alignment: Alignment.center,
             child: Text(

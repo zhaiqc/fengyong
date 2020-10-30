@@ -2,12 +2,18 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app_shop/login/LoginPage.dart';
+import 'package:flutter_app_shop/login/model/User.dart';
 import 'package:flutter_app_shop/utils/AppConfig.dart';
 import 'package:flutter_app_shop/utils/widgets/TrianglePath.dart';
 
 import 'FileChoosePage.dart';
 
 class AddArticlePage extends StatefulWidget {
+  int id;
+
+  AddArticlePage(this.id);
+
   @override
   _AddArticlePageState createState() => _AddArticlePageState();
 }
@@ -68,7 +74,13 @@ class _AddArticlePageState extends State<AddArticlePage> {
               child: Column(children: [
                 Expanded(child: GestureDetector(
                   onTap: (){
-                    AppConfig.navigator(context: context,page: FileChoosePage(null));
+                    if(new User().entity==null){
+                      AppConfig.navigator(context: context,page: LoginPage());
+
+                    }else{
+                      AppConfig.navigator(context: context,page: FileChoosePage(widget.id));
+
+                    }
                   },
                   child:ClipOval(child: Container(
                   width: AppConfig.logic_width(120),

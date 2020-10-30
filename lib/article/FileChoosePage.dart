@@ -79,7 +79,7 @@ class _FileChoosePageState extends State<FileChoosePage>  implements UploadView{
 
           child: new Text(
               "选择图片",
-              style:TextStyle(color:AppConfig.mainColor)),
+              style:TextStyle(color:AppConfig.mainColor,height: 1)),
         )
       ],
     );
@@ -130,7 +130,7 @@ class _FileChoosePageState extends State<FileChoosePage>  implements UploadView{
           child: new TextField(
             controller: contentController,
             focusNode: contentFN,
-            style: AppConfig.normalTextStyle(Colors.black, AppConfig.font_midSize),
+            style: AppConfig.normalTextStyle(Colors.black, AppConfig.font_midSize,),
             decoration: new InputDecoration(
               hintText: "分享你的精彩，让全世界为你点赞...",
               hintStyle: AppConfig.normalTextStyle(Colors.grey, AppConfig.font_midSize),
@@ -191,6 +191,18 @@ class _FileChoosePageState extends State<FileChoosePage>  implements UploadView{
 
     });
 
+  }
+
+  @override
+  void error(msg) {
+    Toast.show(msg, context);
+    // TODO: implement error
+  }
+
+  @override
+  void sendSuccess() {
+    Navigator.pop(context);
+    // TODO: implement sendSuccess
   }
 
 

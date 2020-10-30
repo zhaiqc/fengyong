@@ -2,11 +2,17 @@
 import 'package:chewie/chewie.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app_shop/article/AddAritlcePage.dart';
+import 'package:flutter_app_shop/article/AritlceDetailPage.dart';
+import 'package:flutter_app_shop/detail/DetailViewModel.dart';
+import 'package:flutter_app_shop/detail/article_list_entity.dart';
 import 'package:flutter_app_shop/home/model/shop_entity.dart';
 import 'package:flutter_app_shop/utils/AppConfig.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:video_player/video_player.dart';
+
+import 'DetailView.dart';
 
 class DetailPage extends StatefulWidget {
   ShopEntity  entity;
@@ -17,13 +23,17 @@ class DetailPage extends StatefulWidget {
   _DetailPageState createState() => _DetailPageState();
 }
 
-class _DetailPageState extends State<DetailPage> {
+class _DetailPageState extends State<DetailPage> implements DetailView{
+  DetailViewModel _viewModel;
+  ArticleListEntity _entity;
   List<Widget> tags =new List();
   int height=0;
   ChewieController controller;
 bool showVideo=false;
   @override
   void initState() {
+    _viewModel =DetailViewModel(this);
+    _viewModel.getArticle(shoplist_id: widget.entity.data.id);
      controller = ChewieController(
       videoPlayerController: VideoPlayerController.network(widget.entity.data.attachfile),
       autoPlay: false,
@@ -49,6 +59,7 @@ bool showVideo=false;
           textAlign: TextAlign.right,
           style: TextStyle(
               color: Colors.red,
+              height: 1,
               fontSize:
               AppConfig.logic_fontSize(
                   18)),
@@ -92,8 +103,10 @@ bool showVideo=false;
                   "${widget.entity.data.title}",
                   style: TextStyle(
 
+
                     fontSize: AppConfig.logic_fontSize(25),
-                    color: Colors.orange
+                    color: Colors.orange,
+                    height: 1
 
                   ),
                 ),
@@ -108,7 +121,8 @@ bool showVideo=false;
                   "${widget.entity.data.subtitle}",
                   style: TextStyle(
                       fontSize: AppConfig.logic_fontSize(30),
-                      fontWeight: FontWeight.bold
+                      fontWeight: FontWeight.bold,
+                    height: 1
                   ),
                 ),
                 margin: EdgeInsets.only(left: AppConfig.logic_width(20),right: AppConfig.logic_width(20)),
@@ -148,6 +162,7 @@ bool showVideo=false;
                                               fontSize:
                                               AppConfig.logic_fontSize(
                                                   15),
+                                              height: 1,
                                               color: Colors.red),
                                         ),
                                         Text(
@@ -157,16 +172,19 @@ bool showVideo=false;
                                               fontSize:
                                               AppConfig.logic_fontSize(
                                                   45),
+                                              height: 1,
                                               color: Colors.red),
                                         ),
                                         Text(
                                           "￥${widget.entity.data.originalPrice}",
                                           style: TextStyle(
+                                            height: 1,
                                               fontSize:
                                               AppConfig.logic_width(25),
                                               color: Colors.grey,
                                               decoration:
                                               TextDecoration.lineThrough),
+
                                         ),
                                         widget.entity.data.spellStatus=="1"?  Container(
                                           margin: EdgeInsets.only(left: AppConfig.logic_width(10)),
@@ -232,6 +250,7 @@ bool showVideo=false;
                         style: TextStyle(
                           fontSize: AppConfig.logic_fontSize(35),
                           fontWeight: FontWeight.bold,
+                          height: 1
                         ),
                       ),
                     ),
@@ -310,6 +329,7 @@ bool showVideo=false;
                         style: TextStyle(
                           fontSize: AppConfig.logic_fontSize(35),
                           fontWeight: FontWeight.bold,
+                          height: 1
                         ),
                       ),
                     ),
@@ -360,6 +380,7 @@ bool showVideo=false;
                                 widget.entity.data.manystore.name,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
+                                  height: 1
                                 ),
                               ),
                               Text(
@@ -367,6 +388,7 @@ bool showVideo=false;
                                 widget.entity.data.manystore.address,
                                 maxLines: 1,
                                 style: TextStyle(
+                                  height: 1,
                                     color: Colors.grey,
 
                                     fontSize: AppConfig.logic_fontSize(20),),
@@ -434,6 +456,7 @@ bool showVideo=false;
                       child: new Text(
                         "体验师推荐",
                         style: TextStyle(
+                          height: 1,
                           fontSize: AppConfig.logic_fontSize(35),
                           fontWeight: FontWeight.bold,
                         ),
@@ -443,12 +466,12 @@ bool showVideo=false;
                     new Container(
                       child: new GestureDetector(
                         onTap: () {
-                          ///分类点击事件
                         },
                         child: new Row(
                           children: <Widget>[
                             new Text("查看全部",
                                 style: TextStyle(
+                                  height: 1,
                                     fontSize: AppConfig.logic_fontSize(20))),
                             new Icon(
                               Icons.chevron_right,
@@ -467,14 +490,17 @@ bool showVideo=false;
           ),
 
           SliverToBoxAdapter(
-            child: Container(
+            child: _entity!=null? Container(
               height: AppConfig.logic_width(700),
 //                margin: EdgeInsets.only(top: 20),
-              child: ListView.builder(
+              child:ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: 10,
+                itemCount: _entity.data.length,
                 itemBuilder: (context, index) {
-                  return Container(width:  AppConfig.logic_width(600), height: AppConfig.logic_width(700),
+                  return     InkWell(child: Container(
+
+
+                    width:  AppConfig.logic_width(600), height: AppConfig.logic_width(700),
                     child: Container(
                       child: Card(child: Container(
                         child: Column(
@@ -492,7 +518,7 @@ bool showVideo=false;
                                     decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                         image: DecorationImage(
-                                            image: NetworkImage('https://pic2.zhimg.com/v2-639b49f2f6578eabddc458b84eb3c6a1.jpg'),
+                                            image: NetworkImage(_entity.data[index].avatar),
                                             fit: BoxFit.cover
                                         )
                                     ),
@@ -509,63 +535,67 @@ bool showVideo=false;
                                         Expanded(child:  Container(
                                           margin: EdgeInsets.only(top: AppConfig.logic_height(10)),
                                           alignment: Alignment.centerLeft,
-                                          child: Text("不会蹦跶的露露",textAlign: TextAlign.center,style: TextStyle(fontSize: AppConfig.logic_fontSize(20), fontWeight: FontWeight.bold,),),)),
+                                          child: Text(_entity.data[index].nickname,textAlign: TextAlign.center,style: TextStyle(fontSize: AppConfig.logic_fontSize(20), fontWeight: FontWeight.bold,height: 1),),)),
                                         Expanded(child: Container())
                                       ],),
 
                                   ),)
                                 ],),),flex: 1,),
-                            Expanded(child: Container(color: Colors.blue,child: Row(
+                            Expanded(child: Container(child: Row(
                               children: [
-                                Expanded(child: Container(color: Colors.red,
-                                  child: Image.network("http://static.caibeike.com/i/30667bfefd1b8a763d8d334901c613be-fi6H8b-bAOMwbAOMhj2@!s640p",fit: BoxFit.fitWidth,),
+                                Expanded(child: Container(
+                                  child: Image.network(_entity.data[index].smallimages.split(",")[0],fit: BoxFit.fill,),
                                 ),flex: 2,),
-                                Expanded(child: Container(color: Colors.yellow,child: Column(
+                                Expanded(child: Container(child: Column(
 
                                   children: [
                                     Expanded(child: Container(
                                       width:double.infinity,
-                                      child: Image.network("http://static.caibeike.com/i/65c85b43cec0747e0585fc38c15c7d26-cKbNms-bMgCwbAOMhj2@!s640p",fit: BoxFit.fitWidth),),),
+                                      child: Image.network(_entity.data[index].smallimages.split(",")[1],fit: BoxFit.fill),),),
                                     Expanded(child: Container(
                                       width:double.infinity,
 
-                                      child: Image.network("http://static.caibeike.com/i/65c85b43cec0747e0585fc38c15c7d26-cKbNms-bMgCwbAOMhj2@!s640p",fit: BoxFit.fitWidth),),)
+                                      child: Image.network(_entity.data[index].smallimages.split(",")[2],fit: BoxFit.fill),),)
                                   ],),),flex: 1,),
                               ],
 
                             ),),flex: 3,),
                             Expanded(child: Container(
                               padding: EdgeInsets.all(AppConfig.logic_width(20)),
-                              child: Text("遛娃模式开启|家门口性价比超高的儿童乐园🌻时间匆匆又到了宝妈们开始忙碌遛娃的暑期时光了。👸大小姐在家没有安静多久就吵闹着想要出去玩。特殊时期不想去太远或者人多的地方🎠  家门口的中环百联新开了一家金宝贝探索小镇看着还不错那就带娃走起。",maxLines: 3,style: TextStyle(fontSize: AppConfig.logic_fontSize(20)),
+                              child: Text(_entity.data[index].content,maxLines: 3,style: TextStyle(fontSize: AppConfig.logic_fontSize(20),height: 1),
                               ),)),
                             Expanded(child: Container(child:  Row(
                               children: [
+//                                Container(
+//                                  margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
+//                                  child: new ClipOval(
+//                                    child: new Image.network(
+//                                      "http://static.caibeike.com/i/83f0eeea35ed3d6e9638be0f73c2797b-IzI0dN-bMOMwOOkhp1@!c300",
+//                                      width: AppConfig.logic_width(50),
+//                                    ),
+//                                  ),
+//                                ),
+//                                new ClipOval(
+//                                  child: new Image.network(
+//                                    "http://static.caibeike.com/i/83f0eeea35ed3d6e9638be0f73c2797b-IzI0dN-bMOMwOOkhp1@!c300",
+//                                    width: AppConfig.logic_width(50),
+//                                  ),
+//                                ),
+//                                new ClipOval(
+//                                  child: new Image.network(
+//                                    "http://static.caibeike.com/i/83f0eeea35ed3d6e9638be0f73c2797b-IzI0dN-bMOMwOOkhp1@!c300",
+//                                    width: AppConfig.logic_width(50),
+//                                  ),
+//                                ),
                                 Container(
-                                  margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                                  child: new ClipOval(
-                                    child: new Image.network(
-                                      "http://static.caibeike.com/i/83f0eeea35ed3d6e9638be0f73c2797b-IzI0dN-bMOMwOOkhp1@!c300",
-                                      width: AppConfig.logic_width(50),
-                                    ),
-                                  ),
+
+                                  child: Text("${_entity.data[index].likenum}人点赞"),
+                                  margin: EdgeInsets.only(left: AppConfig.logic_width(10)),
                                 ),
-                                new ClipOval(
-                                  child: new Image.network(
-                                    "http://static.caibeike.com/i/83f0eeea35ed3d6e9638be0f73c2797b-IzI0dN-bMOMwOOkhp1@!c300",
-                                    width: AppConfig.logic_width(50),
-                                  ),
-                                ),
-                                new ClipOval(
-                                  child: new Image.network(
-                                    "http://static.caibeike.com/i/83f0eeea35ed3d6e9638be0f73c2797b-IzI0dN-bMOMwOOkhp1@!c300",
-                                    width: AppConfig.logic_width(50),
-                                  ),
-                                ),
-                                Container(child: Text("13人点赞"),),
                                 Expanded(child: Container()),
 
                                 Container(child:Icon(Icons.favorite_border,size: AppConfig.logic_fontSize(25),),),
-                                Container(margin:EdgeInsets.only(right: AppConfig.logic_fontSize(18)),child: Text("1060",style: TextStyle(fontSize: AppConfig.logic_fontSize(25)),),)
+                                Container(margin:EdgeInsets.only(right: AppConfig.logic_fontSize(18)),child: Text("${_entity.data[index].likenum}",style: TextStyle(fontSize: AppConfig.logic_fontSize(25),height: 1),),)
                               ],
                             ),),flex: 1,),
 
@@ -573,10 +603,13 @@ bool showVideo=false;
 
                       ),),),
 
-                  );
+                  ),onTap: (){
+                    AppConfig.navigator(context: context,page: AritlceDetailPage(_entity.data[index]));
+
+                  },);
                 },
               ),
-            ),
+            ):Container(),
           ),
           ///图文详情
           new SliverList(
@@ -600,6 +633,7 @@ bool showVideo=false;
                         style: TextStyle(
                           fontSize: AppConfig.logic_fontSize(35),
                           fontWeight: FontWeight.bold,
+                          height: 1
                         ),
                       ),
                     ),
@@ -640,6 +674,7 @@ bool showVideo=false;
                         style: TextStyle(
                           fontSize: AppConfig.logic_fontSize(35),
                           fontWeight: FontWeight.bold,
+                          height: 1
                         ),
                       ),
                     ),
@@ -678,6 +713,7 @@ bool showVideo=false;
                       "￥",
                       style: TextStyle(
                           fontSize: AppConfig.logic_fontSize(15),
+                          height: 1,
                           color: Colors.red),
                     ),
                     Text(
@@ -685,6 +721,7 @@ bool showVideo=false;
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: AppConfig.logic_fontSize(45),
+                          height: 1,
                           color: Colors.red),
                     ),
                     Text(
@@ -692,6 +729,7 @@ bool showVideo=false;
                       style: TextStyle(
                           fontSize: AppConfig.logic_width(25),
                           color: Colors.grey,
+                          height: 1,
                           decoration: TextDecoration.lineThrough),
                     ),
                   widget.entity.data.spellStatus=="1"?  Container(
@@ -776,7 +814,7 @@ bool showVideo=false;
         ),
       ),
       floatingActionButton:FloatingActionButton(onPressed: (){
-
+        AppConfig.navigator(context: context,page: AddArticlePage(widget.entity.data.id));
       }, tooltip: '上传',
         child: Icon(
           Icons.add,
@@ -941,6 +979,19 @@ bool showVideo=false;
         ),
       ],
     ),) ;
+  }
+
+  @override
+  void error(error) {
+    // TODO: implement error
+  }
+
+  @override
+  void getArticleListSuccess(ArticleListEntity entity) {
+    setState(() {
+      _entity=entity;
+    });
+    // TODO: implement getArticleListSuccess
   }
 
 }

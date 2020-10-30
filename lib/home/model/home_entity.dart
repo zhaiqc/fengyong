@@ -13,7 +13,7 @@ class HomeData with JsonConvert<HomeData> {
 	List<HomeDataClas> xClass;
 	List<HomeDataBanner> banner;
 	List<HomeDataShopList> shopList;
-	List<dynamic> article;
+	List<HomeDataArticle> article;
 }
 
 class HomeDataClas with JsonConvert<HomeDataClas> {
@@ -77,7 +77,8 @@ class HomeDataShopListShopList with JsonConvert<HomeDataShopListShopList> {
 	String attachfile;
 	String content;
 	String rightsandinterestscontent;
-	dynamic mianzecontent;
+	String mianzecontent;
+	String introduction;
 	@JSONField(name: "manystoretaps_text")
 	List<HomeDataShopListShopListManystoretapsText> manystoretapsText;
 	List<dynamic> avatar;
@@ -92,4 +93,21 @@ class HomeDataShopListShopListManystoretapsText with JsonConvert<HomeDataShopLis
 	@JSONField(name: "manystore_id")
 	int manystoreId;
 	String name;
+}
+
+class HomeDataArticle with JsonConvert<HomeDataArticle> {
+	int id;
+	@JSONField(name: "shoplist_id")
+	int shoplistId;
+	@JSONField(name: "user_id")
+	int userId;
+	dynamic title;
+	int likenum;
+	int createtime;
+	String smallimages;
+	String content;
+	String nickname;
+	String avatar;
+	@JSONField(name: "status_text")
+	String statusText;
 }

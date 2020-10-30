@@ -19,10 +19,15 @@ class LoginViewModel{
 
     Response  res=await  HttpUtils().sendData(url: "sms/send",data: formData);
     LogUtils.d(res.data);
-    CodeEntity entity =new CodeEntity().fromJson(res.data);
-    if(entity.code==1){
+    if(res.data["code"]==1){
+      CodeEntity entity =new CodeEntity().fromJson(res.data);
       _view.sendCodeSuccess(entity.msg);
+
+    }else{
+      _view.error(res.data["msg"]);
+
     }
+
   }
 
   void login({String phoneNum,String code})async{
