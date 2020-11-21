@@ -1,4 +1,5 @@
 import 'package:flutter_app_shop/home/model/shop_entity.dart';
+import 'package:flutter_app_shop/generated/json/base/json_filed.dart';
 
 shopEntityFromJson(ShopEntity data, Map<String, dynamic> json) {
 	if (json['code'] != null) {

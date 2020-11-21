@@ -1,4 +1,5 @@
 import 'package:flutter_app_shop/article/model/upload_entity.dart';
+import 'package:flutter_app_shop/generated/json/base/json_filed.dart';
 
 uploadEntityFromJson(UploadEntity data, Map<String, dynamic> json) {
 	if (json['code'] != null) {

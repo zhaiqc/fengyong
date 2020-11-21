@@ -12,12 +12,12 @@ class AppConfig{
 
   AppConfig._internal();
 
-  static String host ="http://182.92.72.29/api/";
+  static String host ="https://pay.zhaiqichaozeijiershuai.top/api/";
   static ThemeData defaultTheme = new ThemeData(
       brightness: Brightness.light,
 
   );
-  static String AppTitle ="蜂蛹";
+  static String AppTitle ="蜂拥";
 
   static double font_smallSize = logic_fontSize(26.0);
   static double font_midSize = logic_fontSize(30.0);
@@ -154,6 +154,33 @@ class AppConfig{
                 highlightColor: Colors.white
             ),
           ),
+          new Expanded(child: new Container()),
+        ],
+      ),
+    );
+
+  }
+
+
+  static Widget QRView(String qr){
+    return new Container(
+      child: new Column(
+        children: <Widget>[
+          new Expanded(child: new Container()),
+
+          new Container(
+            alignment: Alignment.center,
+            child: Image.network(qr),
+          ),
+          // new Container(
+          //   alignment: Alignment.center,
+          //   margin: const EdgeInsets.only(top: 5.0),
+          //   child: Shimmer.fromColors(
+          //       child: new Text("正在加载中~",style: TextStyle(color: Colors.yellow,),),
+          //       baseColor: Colors.white30,
+          //       highlightColor: Colors.white
+          //   ),
+          // ),
           new Expanded(child: new Container()),
         ],
       ),

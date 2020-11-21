@@ -47,22 +47,22 @@ class _MyPageState extends State<MyPage> {
                                child: Row(
                                children: [
                                Expanded(child: Container(child: Text.rich(TextSpan(text: "7",
-                                   style: TextStyle(fontSize: AppConfig.logic_fontSize(25), color: Colors.black,fontWeight: FontWeight.bold),
+                                   style: TextStyle(fontSize: AppConfig.logic_fontSize(25), color: Colors.black,fontWeight: FontWeight.bold,height: 1),
                                    children:[       TextSpan(
                                    text: '关注',
 
-                                     style: TextStyle(fontSize: AppConfig.logic_fontSize(15), color: Colors.black,fontWeight: FontWeight.normal),
+                                     style: TextStyle(fontSize: AppConfig.logic_fontSize(15), color: Colors.black,fontWeight: FontWeight.normal,height: 1),
 
                                    )
 
 
                                ] )),)),
                                  Expanded(child: Container(child: Text.rich(TextSpan(text: "7",
-                                     style: TextStyle(fontSize: AppConfig.logic_fontSize(25), color: Colors.black,fontWeight: FontWeight.bold),
+                                     style: TextStyle(fontSize: AppConfig.logic_fontSize(25), color: Colors.black,fontWeight: FontWeight.bold,height: 1),
                                      children:[       TextSpan(
                                        text: '粉丝',
 
-                                       style: TextStyle(fontSize: AppConfig.logic_fontSize(15), color: Colors.black,fontWeight: FontWeight.normal),
+                                       style: TextStyle(fontSize: AppConfig.logic_fontSize(15), color: Colors.black,fontWeight: FontWeight.normal,height: 1),
 
                                      )
 

@@ -8,6 +8,7 @@ import 'package:flutter_app_shop/detail/DetailViewModel.dart';
 import 'package:flutter_app_shop/detail/article_list_entity.dart';
 import 'package:flutter_app_shop/home/model/shop_entity.dart';
 import 'package:flutter_app_shop/utils/AppConfig.dart';
+import 'package:flutter_app_shop/utils/LogUtis.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:video_player/video_player.dart';
@@ -768,7 +769,7 @@ bool showVideo=false;
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Expanded(
-                      child: Container(
+                      child:InkWell(child:Container(
                         color: Color(0xFFFFB6C1),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -784,25 +785,32 @@ bool showVideo=false;
                             Container(
                               child: Text("vip微信群",
                                   style: TextStyle(
+                                      height: 1,
                                       color: Colors.red,
                                       fontSize:
                                       AppConfig.logic_fontSize(20))),
                             )
                           ],
                         ),
-                      ),
+                      ),onTap: (){
+                        _viewModel.getQrCode();
+
+                      },),
+
                       flex: 1,
                     ),
                     Expanded(
-                      child: Container(
+                      child:InkWell(child:Container(
                         alignment: Alignment.center,
                         height: AppConfig.logic_height(100),
                         color: Colors.red,
                         child: Text(
                           "一键下单",
-                          style: TextStyle(color: Colors.white,fontSize: AppConfig.logic_fontSize(30),fontWeight: FontWeight.bold),
+                          style: TextStyle(color: Colors.white,fontSize: AppConfig.logic_fontSize(30),fontWeight: FontWeight.bold,height: 1),
                         ),
-                      ),
+                      ) ,onTap: (){
+                        _viewModel.createOrder(shoplist_id:  widget.entity.data.id);
+                      },) ,
                       flex: 2,
                     )
                   ],
@@ -935,6 +943,7 @@ bool showVideo=false;
           child: Text(
             "${widget.entity.data.setmeal[index].name}",
             style: TextStyle(
+              height: 1,
                 fontSize: AppConfig.logic_width(30,), color: Colors.orangeAccent,fontWeight:FontWeight.bold ),
           ),
         ),
@@ -953,6 +962,7 @@ bool showVideo=false;
                       Text(
                         widget.entity.data.setmeal[index].configjson[i].name,
                         style: TextStyle(
+                          height: 1,
                             fontSize: AppConfig.logic_fontSize(
                               25,
                             ),
@@ -965,6 +975,7 @@ bool showVideo=false;
                         child:  Text(
                           "￥${widget.entity.data.setmeal[index].configjson[i].price}",
                           style: TextStyle(
+                            height: 1,
                             fontSize: AppConfig.logic_width(
                               25,
                             ),
@@ -992,6 +1003,23 @@ bool showVideo=false;
       _entity=entity;
     });
     // TODO: implement getArticleListSuccess
+  }
+
+  @override
+  void getQrSuccess(qr) {
+             showDialog(
+           context: context,
+           barrierDismissible: true,
+           builder: (BuildContext context)=>AppConfig.QRView(qr),
+         );
+    // TODO: implement getQrSuccess
+  }
+
+  @override
+  void createOrderSuccess( entity) {
+    LogUtils.d(entity.data.orderSn);
+    _viewModel.payOrder(ordersn: entity.data.orderSn);
+    // TODO: implement createOrderSuccess
   }
 
 }

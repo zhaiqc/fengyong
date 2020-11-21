@@ -107,14 +107,14 @@ class _AritlceDetailPageState extends State<AritlceDetailPage> {
 //                  width: AppConfig.logic_width(6.0),
 //                    color: AppConfig.widgetColor,
                   ),
-                  new Container(
-                    padding: const EdgeInsets.only(left: 5.0),
-                    alignment: Alignment.centerLeft,
-                    child: new Text(
-                      "评论",
-                      style: TextStyle(fontSize: AppConfig.logic_fontSize(35),fontWeight: FontWeight.bold,height: 1),
-                    ),
-                  ),
+                  // new Container(
+                  //   padding: const EdgeInsets.only(left: 5.0),
+                  //   alignment: Alignment.centerLeft,
+                  //   child: new Text(
+                  //     "评论",
+                  //     style: TextStyle(fontSize: AppConfig.logic_fontSize(35),fontWeight: FontWeight.bold,height: 1),
+                  //   ),
+                  // ),
                   new Expanded(child: new Container()),
                   new Container(
                     child: new GestureDetector(

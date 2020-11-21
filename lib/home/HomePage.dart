@@ -49,6 +49,7 @@ class _HomePageState extends State<HomePage> implements HomeView {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppConfig.build_appBar(context, () {}),
+      // appBar: AppBar(backgroundColor: AppConfig.widgetColor,),
       body: _entity != null ? build_body() : LoadingDialog(""),
     );
   }
@@ -246,6 +247,7 @@ class _HomePageState extends State<HomePage> implements HomeView {
                           softWrap: true,
                           maxLines: 2,
                           style: TextStyle(
+
                               fontWeight: FontWeight.bold,
                               fontSize: AppConfig.logic_fontSize(28),height: 1),
                         ),
@@ -510,12 +512,12 @@ class _HomePageState extends State<HomePage> implements HomeView {
                                     fontSize: AppConfig.logic_width(30),),
                               ),
                               width: double.infinity,
-                            ),flex: 2,),
+                            ),flex: 1,),
                           Container(
                               width: double.infinity,
                               child: Text(
                                 data.priceTitle,
-                                style: TextStyle(fontSize: AppConfig.logic_width(25),color: Colors.grey),
+                                style: TextStyle(fontSize: AppConfig.logic_width(25),color: Colors.grey,height: 1),
                               ),
                             ),
                             Expanded(
@@ -559,6 +561,7 @@ class _HomePageState extends State<HomePage> implements HomeView {
                                         Text(
                                           "￥${data.price}",
                                           style: TextStyle(
+                                            height: 1,
                                               fontSize:
                                                   AppConfig.logic_width(30),
                                               color: Colors.red),
@@ -566,6 +569,7 @@ class _HomePageState extends State<HomePage> implements HomeView {
                                         Text(
                                           "￥${data.originalPrice}",
                                           style: TextStyle(
+                                            height: 1,
                                               fontSize:
                                                   AppConfig.logic_width(25),
                                               color: Colors.grey,
@@ -602,6 +606,7 @@ class _HomePageState extends State<HomePage> implements HomeView {
                                           child: Text(
                                             "马上抢",
                                             style: TextStyle(
+                                              height: 1,
                                                 color: Colors.white,
                                                 fontSize:
                                                     AppConfig.logic_fontSize(

@@ -96,9 +96,10 @@ class _AlertViewState extends State<AlertView> {
                                     child: Text(
                                       "${widget.entity.data.priceTitle}",
                                       style: TextStyle(
+
                                         color: Colors.black,
                                           fontSize:
-                                          AppConfig.logic_fontSize(30),decoration: TextDecoration.none,fontWeight: FontWeight.bold),
+                                          AppConfig.logic_fontSize(30),decoration: TextDecoration.none,fontWeight: FontWeight.bold,height: 1),
                                     ),
                                     width: double.infinity,
                                   ),
@@ -204,7 +205,7 @@ class _AlertViewState extends State<AlertView> {
           child: Text(
             "${widget.entity.data.setmeal[index].name}",
             style: TextStyle(
-                fontSize: AppConfig.logic_width(30,), color: Colors.orangeAccent,fontWeight:FontWeight.bold ),
+                fontSize: AppConfig.logic_width(30,), color: Colors.orangeAccent,fontWeight:FontWeight.bold,height: 1 ),
           ),
         ),
         Container(
@@ -225,7 +226,7 @@ class _AlertViewState extends State<AlertView> {
                             fontSize: AppConfig.logic_fontSize(
                               25,
                             ),
-                            color: Colors.black),
+                            color: Colors.black,height: 1),
                       ),
                       Expanded(child: Container()),
                       Container(
@@ -236,7 +237,8 @@ class _AlertViewState extends State<AlertView> {
                           style: TextStyle(
                               fontSize: AppConfig.logic_width(
                                 25,
-                              ),
+                              ),height: 1
+
                              ),
                         ) ,)
 

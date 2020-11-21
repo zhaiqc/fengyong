@@ -106,7 +106,7 @@ class _LoginPageState extends State<LoginPage> implements LoginView {
             alignment: Alignment.center,
             child: Text(
               "立即登陆",
-              style: TextStyle(fontSize: AppConfig.logic_fontSize(30)),
+              style: TextStyle(fontSize: AppConfig.logic_fontSize(30),height: 1),
             ),
           ),
         ],

@@ -120,6 +120,7 @@ class _ShopListPageState extends State<ShopListPage> implements ShopListView {
                                       data.title,
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
+
                                         fontWeight: FontWeight.bold,
                                         fontSize: AppConfig.logic_width(30),height: 1),
                                     ),
@@ -129,7 +130,7 @@ class _ShopListPageState extends State<ShopListPage> implements ShopListView {
                                   width: double.infinity,
                                   child: Text(
                                     data.priceTitle,
-                                    style: TextStyle(fontSize: AppConfig.logic_width(25),color: Colors.grey),
+                                    style: TextStyle(fontSize: AppConfig.logic_width(25),color: Colors.grey,height: 1),
                                   ),
                                 ),
                                 Expanded(
@@ -176,7 +177,7 @@ class _ShopListPageState extends State<ShopListPage> implements ShopListView {
                                               style: TextStyle(
                                                   fontSize:
                                                   AppConfig.logic_width(30),
-                                                  color: Colors.red),
+                                                  color: Colors.red,height: 1),
                                             ),
                                             Text(
                                               "￥${data.originalPrice}",
@@ -185,7 +186,7 @@ class _ShopListPageState extends State<ShopListPage> implements ShopListView {
                                                   AppConfig.logic_width(25),
                                                   color: Colors.grey,
                                                   decoration:
-                                                  TextDecoration.lineThrough),
+                                                  TextDecoration.lineThrough,height: 1),
                                             ),
                                             Expanded(child: Container()),
                                             Container(
@@ -196,7 +197,7 @@ class _ShopListPageState extends State<ShopListPage> implements ShopListView {
                                                     color: Colors.white,
                                                     fontSize:
                                                     AppConfig.logic_fontSize(
-                                                        20)),
+                                                        20),height: 1),
                                               ),
                                               decoration: new BoxDecoration(
                                                 //背景
